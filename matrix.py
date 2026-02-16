@@ -33,6 +33,17 @@ class Matrix:
         result += "]"
         return result
     
+    def __neg__(self):
+        """Unary negation: -M returns matrix with all elements negated"""
+        result = []
+        for row in self.data:
+            result.append([-x for x in row])
+        return Matrix(result)
+    
+    def __pos__(self):
+        """Unary positive: +M returns M"""
+        return Matrix([row[:] for row in self.data])
+    
     def __add__(self, other):
         if isinstance(other, Matrix):
             if self.rows != other.rows or self.cols != other.cols:

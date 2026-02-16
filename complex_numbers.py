@@ -15,6 +15,14 @@ class ComplexNumber:
             imag_str = "i" if imag_part == 1 else f"{imag_part}i"
             return f"{self.real} {sign} {imag_str}"
     
+    def __neg__(self):
+        """Unary negation: -z returns -real - imag*i"""
+        return ComplexNumber(-self.real, -self.imag)
+    
+    def __pos__(self):
+        """Unary positive: +z returns z"""
+        return ComplexNumber(self.real, self.imag)
+    
     def __add__(self, other):
         if isinstance(other, (int, float)):
             return ComplexNumber(self.real + other, self.imag)

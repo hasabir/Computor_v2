@@ -2,11 +2,21 @@ from sympy import sympify, simplify, Symbol
 import re
 
 class Function:
-    def __init__(self, name, variable, expression):
+    def __init__(self, name, variable, expression, predefined_vars=None):
+        """
+        Initialize a function
+        Args:
+            name: function name
+            variable: parameter variable (e.g., 'x')
+            expression: function expression
+            predefined_vars: dict of predefined variables to substitute
+        """
         self.name = name
         self.variable = variable  # The parameter variable (e.g., 'x')
+        self.predefined_vars = predefined_vars if predefined_vars is not None else {}
         
-        self.expression = self._simplify_expression(expression=expression) # The function body as a string
+        # Substitute predefined variables before simplification
+        self.expression = self._simplify_expression(expression=expression)
         print(f"Created function: {self.name}({self.variable}) = {self.expression}")
     
     def __str__(self):
@@ -37,26 +47,40 @@ class Function:
         try:
             # Replace ^ with ** for Python exponentiation
             expr_str = expression.replace('^', '**')
-            print(f"After replacing ^: {expr_str}")
             
             # Add explicit multiplication operators
             expr_str = self._add_implicit_multiplication(expr_str)
-            print(f"After adding implicit multiplication: {expr_str}")
             
-            # Create a symbol for the variable
+            # Create a symbol for the function variable
             var_symbol = Symbol(self.variable)
             
-            # Parse and simplify the expression
-            sympy_expr = sympify(expr_str, locals={self.variable: var_symbol})
-            print(f"Parsed expression for {self.name}: {sympy_expr}")
+            # Create symbols dict with the function variable
+            symbols_dict = {self.variable: var_symbol}
             
+            # Substitute predefined variables with their values
+            # Build a substitution dict for SymPy
+            subs_dict = {}
+            for var_name, var_value in self.predefined_vars.items():
+                # Skip the function parameter variable
+                if var_name.lower() != self.variable.lower():
+                    # Create a temporary symbol for this variable
+                    temp_symbol = Symbol(var_name)
+                    symbols_dict[var_name] = temp_symbol
+                    # Store value for substitution after parsing
+                    subs_dict[temp_symbol] = var_value
+            
+            # Parse the expression with all symbols
+            sympy_expr = sympify(expr_str, locals=symbols_dict)
+            
+            # Substitute predefined variable values
+            if subs_dict:
+                sympy_expr = sympy_expr.subs(subs_dict)
+            
+            # Simplify the expression
             simplified = simplify(sympy_expr)
-            print(f"Simplified expression for {self.name}: {simplified}")
             
             # Convert back to string and replace ** with ^
             result = str(simplified).replace('**', '^')
-            
-            print(f"Final simplified expression: {result}")
             
             return result.replace(' ', '')
         except Exception as e:
