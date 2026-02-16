@@ -1,0 +1,131 @@
+# Computor v2 - Mandatory Requirements Todo List
+
+Here's a comprehensive breakdown of everything you need to implement:
+
+---
+
+## 1. Core Program Structure
+
+- [✓] **Command interpreter/REPL** - Create a shell-like interface that retrieves user inputs  
+- [✓] **Exit functionality** - Allow program exit via keyword, signal, or keyboard shortcut  
+- [✓] **Variable storage context** - Maintain variables within the program's context  
+
+---
+
+## 2. Data Types to Implement
+
+### Rational Numbers ($$x \in \mathbb{Q}$$)
+- [✓] **Create rational number type** - Support any rational number  
+- [✓] **Handle positive and negative values**   
+- [✓] **Handle decimal representations** (e.g., 4.242, -4.3)   
+
+### Complex/Imaginary Numbers ($$x = a + ib$$ where $$(a, b) \in \mathbb{Q}^2$$)
+- [✓] **Create complex number type** - No native language types allowed   
+- [✓] **Parse format**: `2*i + 3` or `-4i - 4`   
+- [✓] **Display format**: `3 + 2i` or `-4 - 4i`   
+
+### Matrices ($$A \in M_{n,p}(\mathbb{Q})$$)
+- [✓] **Create matrix type** - No matrix libraries allowed   
+- [✓] **Parse syntax**: `[[2,3];[4,3]]` (semicolons separate rows, commas separate columns)   
+- [✓] **Handle single-row matrices**: `[[3,4]]` (no semicolon)  
+- [✓] **Display matrices** in clear format   
+        [[2,3];[4,3]] will be displayed as:
+        [[2, 3]
+         [4, 3]]
+
+### Functions (single variable only)
+- [✓] **Create function type** - Store function definitions  
+- [✓] **Parse syntax**: `funA(x) = 2*x^5 + 4x^2 - 5*x + 4`  
+- [✓] **Support any variable name** (case insensitive)  
+- [✓] **Display simplified form**   
+
+---
+
+## 3. Variable Assignment Features
+
+- [✓] **Type inference** - Automatically detect variable type from expression  
+- [✓] **Variable reassignment** - Allow changing variable values  
+- [✓] **Type changing** - Allow reassigning variables with different types   
+- [✓] **Variable-to-variable assignment** - Support `y = x`   
+- [✓] **Display value after assignment** - Show stored value clearly  
+
+---
+
+## 4. Mathematical Operations
+
+### Basic Operators
+- [✓] **Addition** (`+`)  
+- [✓] **Subtraction** (`-`)  
+- [✓] **Multiplication** (`*`)  
+- [✓] **Division** (`/`)  
+- [✓] **Modulo** (`%`)  
+- [✓] **Power** (`^`) - Integer and positive powers (or zero)  
+- [✓] **Matrix multiplication** (`**`)  
+- [✓] **Term-to-term matrix multiplication** (`*`) - Scalar × matrix or element-wise  
+
+### Operation Priorities
+- [✓] **Implement operator precedence** - Follow mathematical order  
+- [✓] **Handle parentheses** - Support nested parentheses  
+
+### Cross-Type Operations
+- [✓] **Operations between types** - Support as many type combinations as possible  
+
+---
+
+## 5. Computation Features
+
+### Expression Resolution
+- [✓] **Query operator** (`=?`) - Resolve mathematical expressions   
+- [✓] **Variable lookup** - Use `varName =?` to return stored value  
+- [✓] **Compute with variables** - Support expressions like `a + 2 =?`  
+
+### Function Evaluation
+- [✓] **Function calls** - Evaluate `funA(2) =?`   
+- [✓] **Nested function calls** - Support `funA(2) + funB(4) =?`  
+- [✓] **Function with variable arguments** - e.g., `funC(3) =?`  
+
+### Polynomial Equation Solving (degree ≤ 2)
+- [✓] **Parse polynomial equations** - Format: `funA(x) = y?`  
+- [✓] **Solve quadratic equations** - Find roots in $$\mathbb{R}$$ or $$\mathbb{C}$$   
+- [✓] **Display solutions clearly** - Show real or complex solutions  
+- [✓] **Handle special cases** - One solution, two solutions, no real solutions  
+
+---
+
+## 6. Syntax & Parsing Rules
+
+### Variable Names
+- [✓] **Letters only** - Variable/function names contain only letters  
+- [✓] **Case insensitive** - `varA` and `vara` are identical  
+- [✓] **Prohibit `i`** - Cannot use `i` as a variable name  
+
+### Flexible Spacing
+- [✓] **Handle spaces flexibly** - Support `varA = 2`, `varB= 2`, `varC =2`, `varD=2`   
+- [✓] **Implicit multiplication** - `2x` means `2 * x`, but `xx` is a variable name  
+
+### Expression Simplification
+- [✓] **Simplify expressions** - e.g., $$(x^2 + 3x + 2)/(x + 1)$$ becomes $$x + 2$$  
+- [✓] **Compute numerical results** - `2 * 5` displays as `10`  
+
+---
+
+## 7. Error Handling
+
+- [✓] **Invalid syntax detection**
+- [✓] **Undefined variable usage**
+- [✓] **Type mismatch errors**
+- [✓] **Division by zero**
+- [✓] **Invalid matrix operations** (dimension mismatches)
+
+---
+
+## Summary Checklist
+
+- [✓] 4 data types (rational, complex, matrix, function)
+- [✓] Variable assignment with type inference
+- [✓] 8 operators (+ - * / % ^ ** and parentheses)
+- [✓] Expression resolution with `=?`
+- [✓] Function evaluation
+- [✓] Polynomial equation solving (degree ≤ 2)
+- [✓] Flexible syntax parsing
+- [✓] Clear output formatting
