@@ -384,19 +384,3 @@ One solution in R:
 
 ---
 
-## **Bonus Test 28: Function Composition**
-
-```
-> funA(x) = 2*x+1
-2 * x + 1
-> funB(x) = 2 * x+1
-2 * x + 1
-> funA(funB(x)) =?
-```
-**Expected Result:**
-```
-4 * x + 3
-```
-    
-
----

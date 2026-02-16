@@ -1,5 +1,0 @@
-Test 14: Expected "238.5 + x"
-varA = 27
-varB = 53
-funA(x) = varA + varB * 4 - 1 / 2 + x
-exit

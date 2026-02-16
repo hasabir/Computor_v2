@@ -1,10 +1,10 @@
 #!/bin/env python3
 from calculator_parser import CalculatorParser
 import readline
-class ComputorV2():
-    def __init__(self):
-        # super().__init__("")
-        self.variables = {}
+# class ComputorV2():
+#     def __init__(self):
+#         # super().__init__("")
+#         self.variables = {}
 
 
 
@@ -12,7 +12,6 @@ class ComputorV2():
 def shell():
     print("Welcome to ComputorV2!")
     print("Type 'help' for a list of commands.")
-    bc = ComputorV2()
     # save history of commands  and relults
     try:
         parser = CalculatorParser()
