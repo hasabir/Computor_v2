@@ -478,9 +478,19 @@ class CalculatorParser():
             
             # If target value is not empty and not 0, create equation: func_expr - target_value = 0
             if target_value and target_value != '0':
-                # Parse target value
+                # Parse target value - check if it's a variable first
                 try:
-                    target = float(target_value)
+                    # Check if it's a defined variable
+                    if target_value.lower() in self.variables:
+                        var_value = self.variables[target_value.lower()]
+                        # Make sure it's a numeric value
+                        if isinstance(var_value, (int, float)):
+                            target = var_value
+                        else:
+                            raise SyntaxError(f"Variable '{target_value}' is not a numeric value")
+                    else:
+                        # Try to parse as a number
+                        target = float(target_value)
                     # Create new expression: func_expr - target
                     equation_expr = f"({func_expr})-({target})"
                 except ValueError:

@@ -19,6 +19,11 @@ def shell():
         while True:
             command = input("> ")
             # readline.add_history(command)
+            
+            # Skip comment lines and empty lines
+            if command.strip().startswith("#") or command.strip() == "":
+                continue
+            
             if command == "help":
                 print("Available commands:")
                 print("  help - Show this help message")

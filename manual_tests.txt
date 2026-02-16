@@ -1,0 +1,82 @@
+# Manual test file - run each test individually
+# Test 1
+varA = 2
+
+# Test 2
+varB = 4.242
+
+# Test 3
+varC = -4.3
+
+# Test 4
+varA = 2*i + 3
+
+# Test 5
+varB = -4i - 4
+
+# Test 6
+varA = [[2,3];[4,3]]
+
+# Test 7
+varB = [[3,4]]
+
+# Test 8
+funA(x) = 2*x^5 + 4x^2 - 5*x + 4
+
+# Test 9
+funB(y) = 43 * y / (4 % 2 * y)
+
+# Test 10
+funC(z) = -2 * z - 5
+
+# Test 11
+x = 2
+y = x
+y = 7
+y = 2 * i - 4
+
+# Test 12-16
+varA = 2 + 4 *2 - 5 %4 + 2 * (4 + 5)
+varB = 2 * varA - 5 %4
+funA(x) = varA + varB * 4 - 1 / 2 + x
+varC = 2 * varA - varB
+varD = funA(varC)
+
+# Test 17
+a = 2 * 4 + 4
+a + 2 =?
+
+# Test 18-22
+funA(x) = 2 * 4 + x
+funB(x) = 4 -5 + (x + 2)^2 - 4
+funC(x) = 4x + 5 - 2
+funA(2) + funB(4) =?
+funC(3) =?
+
+# Test 23
+funA(x) = x^2 + 2x + 1
+y = 0
+funA(x) = y?
+
+# Test 24
+varA = 2
+varB= 2 * (4 + varA + 3)
+varC =2 * varB
+varD=2 *(2 + 4 *varC -4 /3)
+
+# Test 25-26
+matA = [[1,2];[3,2];[3,4]]
+matB=[[1,2]]
+
+# Test 27
+funA(b) = 2*b+b
+funB(a)=2 * a
+funC(y) =2* y + 4 -2 * 4+1/3
+funD(x)=2 *x
+
+# Test 28 (Bonus)
+funA(x) = 2*x+1
+funB(x) = 2 * x+1
+funA(funB(x)) =?
+
+exit
